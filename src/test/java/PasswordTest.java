@@ -16,7 +16,7 @@ public class PasswordTest {
     }
 
     @Test
-    public void passwordTest_whenLengthAbove8_thenReturn1() {
+    public void passwordTest_whenLengthAbove8_thenReturn0() {
 
         //GIVEN
         String password = "Short23239084203942";
@@ -29,7 +29,7 @@ public class PasswordTest {
     }
 
     @Test
-    public void passwordTest_whenLengthExactly8_thenReturn1() {
+    public void passwordTest_whenLengthIsExactly8_thenReturn0() {
 
         //GIVEN
         String password = "12345678";
@@ -54,7 +54,7 @@ public class PasswordTest {
         assertEquals(true, actual);
     }
     @Test
-    public void passwordTest_whenNoNumber_thenReturn1() {
+    public void passwordTest_whenNoNumber_thenReturn0() {
 
         //GIVEN
         String password = "Short";
@@ -65,8 +65,21 @@ public class PasswordTest {
         //THEN
         assertEquals(true, actual);
     }
+
     @Test
-    public void passwordTest_whenNoOtherCase_thenReturn1() {
+    public void passwordTest_whenOnlyUpperCase_thenReturn0() {
+
+        //GIVEN
+        String password = "UPPERCASE5527";
+
+        //WHEN
+        boolean actual = Password.checkCase(password);
+
+        //THEN
+        assertEquals(true, actual);
+    }
+    @Test
+    public void passwordTest_whenOnlyLowerCase_thenReturn0() {
 
         //GIVEN
         String password = "lowercase5527";
@@ -75,11 +88,11 @@ public class PasswordTest {
         boolean actual = Password.checkCase(password);
 
         //THEN
-        assertEquals(false, actual);
+        assertEquals(true, actual);
     }
 
     @Test
-    public void passwordTest_whenHasOtherCase_thenReturn1() {
+    public void passwordTest_whenHasOtherCase_thenReturn0() {
 
         //GIVEN
         String password = "lowerUPPERcase";
