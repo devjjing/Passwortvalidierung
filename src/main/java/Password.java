@@ -5,20 +5,6 @@ public class Password {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter your Password:");
         String password = sc.nextLine();
-        int uppercase = 0;
-        int lowercase = 0;
-        for (int i = 0; i < password.length(); i++) {
-            char ch = password.charAt(i);
-            if (ch >= 'A' && ch <= 'Z') {
-                uppercase++;
-                if (ch >= 'a' && ch <= 'z')
-                    lowercase++;
-            }
-
-        }
-        if (lowercase == (uppercase = 0)) {
-
-        }
 
         if (countLength(password)) {
             System.out.println("+ has minimum 8 characters");
@@ -30,7 +16,7 @@ public class Password {
         } else {
             System.out.println("Too few numbers");
         }
-        if (checkCase(password)) {
+        if (caseCheck(password)) {
             System.out.println("+ has uppercase and lowercase letters");
         } else {
             System.out.println("Password needs uppercase and lowercase letter");
@@ -44,17 +30,14 @@ public class Password {
     }
 
     public static boolean countLength(String password) {
-        if (password.length() < 8) {
-            return false;
-        } else {
-            return true;
-        }
+        return password.length() >= 8;
     }
 
     public static boolean checkNumber(String password) {
         for (int i = 0; i < password.length(); i++) {
-            if (Character.isDigit(password.charAt(i))) ;
-            return true;
+            if (Character.isDigit(password.charAt(i))) {
+                return true;
+            }
         }
         return false;
     }
@@ -62,14 +45,24 @@ public class Password {
     /*int varCase = lowercase++;
     uppercase;*/
 
-    public static boolean checkCase(String password) {
+    public static boolean caseCheck(String password) {
+        boolean hasUpperCase = false;
+        boolean hasLowerCase = false;
         for (int i = 0; i < password.length(); i++) {
             if (Character.isUpperCase(password.charAt(i))) {
-                return true;
+                hasUpperCase = true;
+            }
+            if (Character.isLowerCase(password.charAt(i))) {
+                hasLowerCase = true;
+            }
+
+            if (hasUpperCase && hasLowerCase) {
+                break;
             }
         }
-        return false;
-
+        return hasUpperCase && hasLowerCase;
+    }
+}
     /*public static boolean commonPass (int xyz) {
         if (){
             return false;
@@ -77,14 +70,4 @@ public class Password {
             return true;
         }
     }*/
-    }
-
-    public static boolean checkCaselower(String password) {
-        for (int i = 0; i < password.length(); i++) {
-            if (Character.isLowerCase(password.charAt(i))) ;
-            return true;
-        }
-        return false;
-    }
-}
 

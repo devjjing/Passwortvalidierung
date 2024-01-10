@@ -2,34 +2,9 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PasswordTest {
-    @Test
-    public void passwordTest_whenLengthUnder8_thenReturn1() {
-
-        //GIVEN
-        String password = "Short23";
-
-        //WHEN
-        boolean actual = Password.countLength(password);
-
-        //THEN
-        assertEquals(false, actual);
-    }
 
     @Test
-    public void passwordTest_whenLengthAbove8_thenReturn0() {
-
-        //GIVEN
-        String password = "Short23239084203942";
-
-        //WHEN
-        boolean actual = Password.countLength(password);
-
-        //THEN
-        assertEquals(true, actual);
-    }
-
-    @Test
-    public void passwordTest_whenLengthIsExactly8_thenReturn0() {
+    public void passwordTest_whenLengthIsEightOrAbove_thenReturnTrue() {
 
         //GIVEN
         String password = "12345678";
@@ -38,23 +13,36 @@ public class PasswordTest {
         boolean actual = Password.countLength(password);
 
         //THEN
-        assertEquals(true, actual);
+        assertTrue(actual);
     }
 
     @Test
-    public void passwordTest_whenNumber_thenReturn0() {
+    public void passwordTest_whenLengthIsUnderEight_thenReturnTrue() {
 
         //GIVEN
-        String password = "Short23";
+        String password = "1234567";
+
+        //WHEN
+        boolean actual = Password.countLength(password);
+
+        //THEN
+        assertFalse(actual);
+    }
+
+    @Test
+    public void passwordTest_whenNumber_thenReturnTrue() {
+
+        //GIVEN
+        String password = "Short10";
 
         //WHEN
         boolean actual = Password.checkNumber(password);
 
         //THEN
-        assertEquals(true, actual);
+        assertTrue(actual);
     }
     @Test
-    public void passwordTest_whenNoNumber_thenReturn0() {
+    public void passwordTest_whenNoNumber_thenReturnTrue() {
 
         //GIVEN
         String password = "Short";
@@ -63,45 +51,45 @@ public class PasswordTest {
         boolean actual = Password.checkNumber(password);
 
         //THEN
-        assertEquals(true, actual);
+        assertFalse(actual);
     }
 
     @Test
-    public void passwordTest_whenOnlyUpperCase_thenReturn0() {
+    public void passwordTest_whenOnlyUpperCase_thenReturnTrue() {
 
         //GIVEN
         String password = "UPPERCASE5527";
 
         //WHEN
-        boolean actual = Password.checkCase(password);
+        boolean actual = Password.caseCheck(password);
 
         //THEN
-        assertEquals(true, actual);
+        assertFalse(actual);
     }
     @Test
-    public void passwordTest_whenOnlyLowerCase_thenReturn0() {
+    public void passwordTest_whenOnlyLowerCase_thenReturnTrue() {
 
         //GIVEN
         String password = "lowercase5527";
 
         //WHEN
-        boolean actual = Password.checkCase(password);
+        boolean actual = Password.caseCheck(password);
 
         //THEN
-        assertEquals(true, actual);
+        assertFalse(actual);
     }
 
     @Test
-    public void passwordTest_whenHasOtherCase_thenReturn0() {
+    public void passwordTest_whenHasOtherCase_thenReturnTrue() {
 
         //GIVEN
-        String password = "lowerUPPERcase";
+        String password = "lowerUPPER";
 
         //WHEN
-        boolean actual = Password.checkCase(password);
+        boolean actual = Password.caseCheck(password);
 
         //THEN
-        assertEquals(true, actual);
+        assertTrue(actual);
     }
 }
     /*
